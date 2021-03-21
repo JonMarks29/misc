@@ -12,7 +12,8 @@ Usage:
 v = AVI(pathin)  # read the .avi video at the location pathin
 v.print_headers() # print the main and stream headers as read from the video
 v.verify_headers() # do basic cross-header verification checks to ensure same data
-v.rewrite(pathout,rebin_factor=2, greyscale=True) # rewrite at location pathout as a 2x-binned greyscale .avi (with mjpg codec)
+v.rewrite(pathout,rebin_factor=1, greyscale=True, fps=None) # rewrite at location pathout as a 2x-binned greyscale .avi (with mjpg codec).
+    # if fps=None the function will try to infer the fps from the stream header information, this can be overidden by passing a value
 
 vnew = AVI(pathout) # read in the rewritten .avi video
 vnew.print_headers() # print the headers of the new video
@@ -191,31 +192,5 @@ class AVI():
         cap.release()
         out.release()
         cv2.destroyAllWindows()
-
-
-pathin = 'C:/Users/jmmac/Downloads/210315_WormTestVideo_ori.avi'
-output = 'C:/Users/jmmac/Downloads/210315_WormTestVideo_test.avi'
-cd_ex = 'C:/Users/jmmac/Desktop/blender/cd_exchange/avi_jpeg0000-0700.avi'    
-
-
-
-
-v = AVI(pathin)
-#v.print_headers()
-#v.verify_headers()
-v.rewrite(output,rebin_factor=2, greyscale=True)
-
-vnew = AVI(output)
-#vnew.print_headers()
-#vnew.verify_headers()
-
-
-
-    
-    
-
-
-
-
 
 
